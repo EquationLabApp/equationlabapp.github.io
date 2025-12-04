@@ -19,11 +19,47 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header with logo */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+        }
+
+        .header-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .header-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .main-content {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ffffff;
-            overflow: hidden;
+            padding-top: 70px;
         }
 
         .container {
@@ -32,7 +68,15 @@
             max-width: 600px;
         }
 
-        .logo {
+        .logo-large {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .brand-name {
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
@@ -171,7 +215,7 @@
 
         /* Floating equation decorations */
         .equation {
-            position: absolute;
+            position: fixed;
             color: rgba(255, 255, 255, 0.05);
             font-size: 1.5rem;
             font-family: 'Times New Roman', serif;
@@ -179,16 +223,30 @@
             pointer-events: none;
         }
 
-        .eq1 { top: 10%; left: 5%; }
-        .eq2 { top: 20%; right: 8%; }
+        .eq1 { top: 15%; left: 5%; }
+        .eq2 { top: 25%; right: 8%; }
         .eq3 { bottom: 15%; left: 10%; }
         .eq4 { bottom: 25%; right: 5%; }
-        .eq5 { top: 50%; left: 3%; }
-        .eq6 { top: 40%; right: 3%; }
+        .eq5 { top: 55%; left: 3%; }
+        .eq6 { top: 45%; right: 3%; }
 
         @media (max-width: 600px) {
-            .logo {
+            .header {
+                padding: 0.75rem 1rem;
+            }
+            .header-logo {
+                width: 32px;
+                height: 32px;
+            }
+            .header-title {
+                font-size: 1rem;
+            }
+            .brand-name {
                 font-size: 2.5rem;
+            }
+            .logo-large {
+                width: 80px;
+                height: 80px;
             }
             .stats {
                 gap: 1.5rem;
@@ -203,6 +261,12 @@
     </style>
 </head>
 <body>
+    <!-- Header with logo -->
+    <header class="header">
+        <img src="logo.png" alt="EquationLab" class="header-logo">
+        <span class="header-title">EquationLab</span>
+    </header>
+
     <!-- Floating equations background -->
     <span class="equation eq1">E = mc²</span>
     <span class="equation eq2">F = ma</span>
@@ -211,49 +275,57 @@
     <span class="equation eq5">∇ × E = -∂B/∂t</span>
     <span class="equation eq6">Q = mcΔT</span>
 
-    <div class="container">
-        <h1 class="logo">EquationLab</h1>
-        <p class="tagline">Engineering Equation Solver & Calculator</p>
-        
-        <p class="coming-soon">Coming Soon</p>
-        
-        <div class="features">
-            <span class="feature">3,000+ Equations</span>
-            <span class="feature">20+ Disciplines</span>
-            <span class="feature">Step-by-Step Solutions</span>
-            <span class="feature">Unit Conversion</span>
-            <span class="feature">Symbolic Solver</span>
-        </div>
-
-        <div class="email-signup">
-            <p>Get notified when we launch</p>
-            <form class="email-form" action="#" method="post">
-                <input type="email" class="email-input" placeholder="Enter your email" required>
-                <button type="submit" class="submit-btn">Notify Me</button>
-            </form>
-        </div>
-
-        <div class="stats">
-            <div class="stat">
-                <div class="stat-number">3,000+</div>
-                <div class="stat-label">Equations</div>
+    <main class="main-content">
+        <div class="container">
+            <img src="logo.png" alt="EquationLab Logo" class="logo-large">
+            <h1 class="brand-name">EquationLab</h1>
+            <p class="tagline">Engineering Equation Solver & Calculator</p>
+            
+            <p class="coming-soon">Coming Soon</p>
+            
+            <div class="features">
+                <span class="feature">3,000+ Equations</span>
+                <span class="feature">20+ Disciplines</span>
+                <span class="feature">Step-by-Step Solutions</span>
+                <span class="feature">Unit Conversion</span>
+                <span class="feature">Symbolic Solver</span>
+                <span class="feature">Project Tracker</span>
+                <span class="feature">Cost Tracker</span>
+                <span class="feature">To-Do Lists</span>
+                <span class="feature">Algorithm Generator</span>
             </div>
-            <div class="stat">
-                <div class="stat-number">20+</div>
-                <div class="stat-label">Disciplines</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">1,297</div>
-                <div class="stat-label">Derivation Steps</div>
-            </div>
-        </div>
 
-        <div class="footer">
-            <p>© 2025 EquationLab. All rights reserved.</p>
-            <p style="margin-top: 0.5rem;">
-                <a href="mailto:equationlabapp@gmail.com">Contact</a>
-            </p>
+            <div class="email-signup">
+                <p>Get notified when we launch</p>
+                <form class="email-form" action="#" method="post">
+                    <input type="email" class="email-input" placeholder="Enter your email" required>
+                    <button type="submit" class="submit-btn">Notify Me</button>
+                </form>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">3,000+</div>
+                    <div class="stat-label">Equations</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Disciplines</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">1,297</div>
+                    <div class="stat-label">Derivation Steps</div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>© 2025 EquationLab. All rights reserved.</p>
+                <p style="margin-top: 0.5rem;">
+                    <a href="mailto:equationlabapp@gmail.com">Contact</a>
+                </p>
+            </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>
+
