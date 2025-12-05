@@ -1,498 +1,354 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EquationLab - Engineering Equation Solver</title>
-    <meta name="description" content="EquationLab: Professional engineering equation solver with 3,000+ equations, step-by-step derivations, and unit conversion.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        min-height: 100vh;
+        color: #ffffff;
+        overflow-x: hidden;
+    }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
+    /* Header with logo */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background: rgba(26, 26, 46, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 100;
+    }
 
-        /* Header with logo */
+    .header-logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+    }
+
+    .header-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .main-content {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 70px;
+    }
+
+    .container {
+        text-align: center;
+        padding: 2rem;
+        max-width: 600px;
+    }
+
+    .logo-large {
+        width: 120px;
+        height: 120px;
+        border-radius: 24px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+    }
+
+    .brand-name {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .tagline {
+        font-size: 1.25rem;
+        color: #a0aec0;
+        margin-bottom: 3rem;
+    }
+
+    .coming-soon {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #00d4ff;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    .features {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 3rem;
+    }
+
+    .feature {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.75rem 1.25rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        color: #e2e8f0;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .email-signup {
+        margin-top: 2rem;
+    }
+
+    .email-signup p {
+        color: #a0aec0;
+        margin-bottom: 1rem;
+    }
+
+    .email-form {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .email-input {
+        padding: 0.875rem 1.25rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        width: 280px;
+        outline: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: border-color 0.3s;
+    }
+
+    .email-input::placeholder {
+        color: #718096;
+    }
+
+    .email-input:focus {
+        border-color: #00d4ff;
+    }
+
+    .submit-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+        color: #ffffff;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    }
+
+    .stats {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stat {
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #00d4ff;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
+        color: #718096;
+        margin-top: 0.25rem;
+    }
+
+    .footer {
+        margin-top: 3rem;
+        color: #4a5568;
+        font-size: 0.85rem;
+    }
+
+    .footer a {
+        color: #718096;
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        color: #00d4ff;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+        margin-top: 4rem;
+        padding-top: 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pricing-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .pricing-subtitle {
+        color: #a0aec0;
+        margin-bottom: 2rem;
+    }
+
+    .pricing-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .pricing-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 1.5rem;
+        width: 200px;
+        text-align: center;
+        position: relative;
+        transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    .pricing-card.featured {
+        border-color: #00d4ff;
+        background: rgba(0, 212, 255, 0.1);
+    }
+
+    .plan-badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(90deg, #00d4ff, #7b2cbf);
+        color: white;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+    }
+
+    .plan-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #e2e8f0;
+        margin-bottom: 0.5rem;
+    }
+
+    .plan-price {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #00d4ff;
+    }
+
+    .plan-period {
+        font-size: 0.8rem;
+        color: #718096;
+        margin-bottom: 1rem;
+    }
+
+    .plan-features {
+        list-style: none;
+        text-align: left;
+        font-size: 0.8rem;
+        color: #a0aec0;
+    }
+
+    .plan-features li {
+        padding: 0.3rem 0;
+        padding-left: 1rem;
+        position: relative;
+    }
+
+    .plan-features li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #00d4ff;
+    }
+
+    .pricing-compare {
+        font-size: 0.85rem;
+        color: #718096;
+        font-style: italic;
+    }
+
+    /* Floating equation decorations */
+    .equation {
+        position: fixed;
+        color: rgba(255, 255, 255, 0.05);
+        font-size: 1.5rem;
+        font-family: 'Times New Roman', serif;
+        font-style: italic;
+        pointer-events: none;
+    }
+
+    .eq1 { top: 15%; left: 5%; }
+    .eq2 { top: 25%; right: 8%; }
+    .eq3 { bottom: 15%; left: 10%; }
+    .eq4 { bottom: 25%; right: 5%; }
+    .eq5 { top: 55%; left: 3%; }
+    .eq6 { top: 45%; right: 3%; }
+
+    @media (max-width: 600px) {
         .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: rgba(26, 26, 46, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            z-index: 100;
+            padding: 0.75rem 1rem;
         }
-
         .header-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 32px;
+            height: 32px;
         }
-
         .header-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 1rem;
         }
-
-        .main-content {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 70px;
-        }
-
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 600px;
-        }
-
-        .logo-large {
-            width: 120px;
-            height: 120px;
-            border-radius: 24px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
-        }
-
         .brand-name {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 2.5rem;
         }
-
-        .tagline {
-            font-size: 1.25rem;
-            color: #a0aec0;
-            margin-bottom: 3rem;
+        .logo-large {
+            width: 80px;
+            height: 80px;
         }
-
-        .coming-soon {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #00d4ff;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .feature {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 0.75rem 1.25rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: #e2e8f0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .email-signup {
-            margin-top: 2rem;
-        }
-
-        .email-signup p {
-            color: #a0aec0;
-            margin-bottom: 1rem;
-        }
-
-        .email-form {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .email-input {
-            padding: 0.875rem 1.25rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            width: 280px;
-            outline: none;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: border-color 0.3s;
-        }
-
-        .email-input::placeholder {
-            color: #718096;
-        }
-
-        .email-input:focus {
-            border-color: #00d4ff;
-        }
-
-        .submit-btn {
-            padding: 0.875rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            color: #ffffff;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
-        }
-
         .stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 1.5rem;
         }
-
-        .stat {
-            text-align: center;
-        }
-
         .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #00d4ff;
-        }
-
-        .stat-label {
-            font-size: 0.85rem;
-            color: #718096;
-            margin-top: 0.25rem;
-        }
-
-        .footer {
-            margin-top: 3rem;
-            color: #4a5568;
-            font-size: 0.85rem;
-        }
-
-        .footer a {
-            color: #718096;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            color: #00d4ff;
-        }
-
-        /* Pricing Section */
-        .pricing-section {
-            margin-top: 4rem;
-            padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .pricing-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .pricing-subtitle {
-            color: #a0aec0;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .pricing-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 1.5rem;
-            width: 200px;
-            text-align: center;
-            position: relative;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(0, 212, 255, 0.3);
-        }
-
-        .pricing-card.featured {
-            border-color: #00d4ff;
-            background: rgba(0, 212, 255, 0.1);
-        }
-
-        .plan-badge {
-            position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(90deg, #00d4ff, #7b2cbf);
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-        }
-
-        .plan-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #e2e8f0;
-            margin-bottom: 0.5rem;
-        }
-
-        .plan-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #00d4ff;
-        }
-
-        .plan-period {
-            font-size: 0.8rem;
-            color: #718096;
-            margin-bottom: 1rem;
-        }
-
-        .plan-features {
-            list-style: none;
-            text-align: left;
-            font-size: 0.8rem;
-            color: #a0aec0;
-        }
-
-        .plan-features li {
-            padding: 0.3rem 0;
-            padding-left: 1rem;
-            position: relative;
-        }
-
-        .plan-features li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #00d4ff;
-        }
-
-        .pricing-compare {
-            font-size: 0.85rem;
-            color: #718096;
-            font-style: italic;
-        }
-
-        /* Floating equation decorations */
-        .equation {
-            position: fixed;
-            color: rgba(255, 255, 255, 0.05);
             font-size: 1.5rem;
-            font-family: 'Times New Roman', serif;
-            font-style: italic;
-            pointer-events: none;
         }
-
-        .eq1 { top: 15%; left: 5%; }
-        .eq2 { top: 25%; right: 8%; }
-        .eq3 { bottom: 15%; left: 10%; }
-        .eq4 { bottom: 25%; right: 5%; }
-        .eq5 { top: 55%; left: 3%; }
-        .eq6 { top: 45%; right: 3%; }
-
-        @media (max-width: 600px) {
-            .header {
-                padding: 0.75rem 1rem;
-            }
-            .header-logo {
-                width: 32px;
-                height: 32px;
-            }
-            .header-title {
-                font-size: 1rem;
-            }
-            .brand-name {
-                font-size: 2.5rem;
-            }
-            .logo-large {
-                width: 80px;
-                height: 80px;
-            }
-            .stats {
-                gap: 1.5rem;
-            }
-            .stat-number {
-                font-size: 1.5rem;
-            }
-            .email-input {
-                width: 100%;
-            }
+        .email-input {
+            width: 100%;
         }
-    </style>
-</head>
-<body>
-    <!-- Header with logo -->
-    <header class="header">
-        <img src="logo.png" alt="EquationLab" class="header-logo">
-        <span class="header-title">EquationLab</span>
-    </header>
-
-    <!-- Floating equations background -->
-    <span class="equation eq1">E = mc²</span>
-    <span class="equation eq2">F = ma</span>
-    <span class="equation eq3">PV = nRT</span>
-    <span class="equation eq4">σ = F/A</span>
-    <span class="equation eq5">∇ × E = -∂B/∂t</span>
-    <span class="equation eq6">Q = mcΔT</span>
-
-    <main class="main-content">
-        <div class="container">
-            <img src="logo.png" alt="EquationLab Logo" class="logo-large">
-            <h1 class="brand-name">EquationLab</h1>
-            <p class="tagline">Engineering Equation Solver & Calculator</p>
-            
-            <p class="coming-soon">Coming Soon</p>
-            
-            <div class="features">
-                <span class="feature">3,000+ Equations</span>
-                <span class="feature">20+ Disciplines</span>
-                <span class="feature">Step-by-Step Solutions</span>
-                <span class="feature">Unit Conversion</span>
-                <span class="feature">Symbolic Solver</span>
-                <span class="feature">Project Tracker</span>
-                <span class="feature">Cost Tracker</span>
-                <span class="feature">To-Do Lists</span>
-                <span class="feature">Algorithm Generator</span>
-            </div>
-
-            <div class="email-signup">
-                <p>Get notified when we launch</p>
-                <form class="email-form" action="#" method="post">
-                    <input type="email" class="email-input" placeholder="Enter your email" required>
-                    <button type="submit" class="submit-btn">Notify Me</button>
-                </form>
-            </div>
-
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">3,000+</div>
-                    <div class="stat-label">Equations</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">20+</div>
-                    <div class="stat-label">Disciplines</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">1,297</div>
-                    <div class="stat-label">Derivation Steps</div>
-                </div>
-            </div>
-
-            <!-- Pricing Section -->
-            <div class="pricing-section">
-                <h2 class="pricing-title">Simple, Affordable Pricing</h2>
-                <p class="pricing-subtitle">Professional tools at a fraction of the cost</p>
-                <div class="pricing-cards">
-                    <div class="pricing-card">
-                        <div class="plan-name">Free</div>
-                        <div class="plan-price">$0</div>
-                        <div class="plan-period">forever</div>
-                        <ul class="plan-features">
-                            <li>Basic equations</li>
-                            <li>Limited solves per day</li>
-                            <li>Community support</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-card featured">
-                        <div class="plan-badge">Most Popular</div>
-                        <div class="plan-name">Pro</div>
-                        <div class="plan-price">$7.50</div>
-                        <div class="plan-period">per month</div>
-                        <ul class="plan-features">
-                            <li>All 3,000+ equations</li>
-                            <li>Unlimited solves</li>
-                            <li>Interactive graphing</li>
-                            <li>Export to slides</li>
-                            <li>Step-by-step derivations</li>
-                            <li>Offline mode</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-card">
-                        <div class="plan-name">Professor</div>
-                        <div class="plan-price">$7.50</div>
-                        <div class="plan-period">per month</div>
-                        <ul class="plan-features">
-                            <li>All Pro features</li>
-                            <li>Quiz builder</li>
-                            <li>Class management</li>
-                            <li>Student analytics</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-card">
-                        <div class="plan-name">Enterprise</div>
-                        <div class="plan-price">Custom</div>
-                        <div class="plan-period">contact us</div>
-                        <ul class="plan-features">
-                            <li>Everything in Pro</li>
-                            <li>Custom equation sets</li>
-                            <li>SSO & admin dashboard</li>
-                            <li>Priority support</li>
-                            <li>API access</li>
-                        </ul>
-                    </div>
-                </div>
-                <p class="pricing-compare">Compare: MATLAB $940/yr • Mathcad $660/yr • Wolfram $300/yr</p>
-            </div>
-
-            <div class="footer">
-                <p>© 2025 EquationLab. All rights reserved.</p>
-                <p style="margin-top: 0.5rem;">
-                    <a href="mailto:equationlabapp@gmail.com">Contact</a> | <a href="https://www.facebook.com/profile.php?id=61584556264596" target="_blank">Facebook</a> | <a href="https://reddit.com/r/EquationLabApp" target="_blank">Reddit</a> | <a href="https://x.com/EquationLabApp" target="_blank">X</a> | <a href="https://linkedin.com/in/equationlab-app-b194b4398" target="_blank">LinkedIn</a> | <a href="https://www.youtube.com/@EquationLabApp" target="_blank">YouTube</a> | <a href="https://discord.gg/p8XnbJKT" target="_blank">Discord</a> |
-                </p>
-            </div>
-        </div>
-    </main>
-</body>
-</html>
-
-
+    }
+</style>
 
